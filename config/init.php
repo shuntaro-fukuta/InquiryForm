@@ -11,5 +11,4 @@ const CLASSES_DIR = APP_ROOT . DIR_SEP . 'src' . DIR_SEP . 'app' . DIR_SEP . 'cl
 const VIEW_DIR = PUBLIC_DIR . DIR_SEP . 'views';
 const HTML_DIR = PUBLIC_DIR . DIR_SEP . 'html';
 
-const LOG_DIR = APP_ROOT . DIR_SEP . 'log';
-ini_set('error_log', LOG_DIR . DIR_SEP . 'error.log');
+require_once('log_config.php');

@@ -7,15 +7,29 @@ require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR .
 session_start();
 
 $inquiry_form = null;
-if (isset($_SESSION['inquiry_form'])) {
-    $inquiry_form = $_SESSION['inquiry_form'];
-    unset($_SESSION['inquiry_form']);
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_SESSION['inquiry_form'])) {
+        $inquiry_form = $_SESSION['inquiry_form'];
+    }
 }
 
-$errors = [];
-if (isset($_SESSION['errors'])) {
-    $errors = $_SESSION['errors'];
-    unset($_SESSION['errors']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $inquiry_form = new InquiryForm();
+    $inquiry_form->setSubject(get_element_from_post_parameters('subject'));
+    $inquiry_form->setName(get_element_from_post_parameters('name'));
+    $inquiry_form->setEmail(get_element_from_post_parameters('email'));
+    $inquiry_form->setTelephoneNumber(get_element_from_post_parameters('telephone_number'));
+    $inquiry_form->setInquiry(get_element_from_post_parameters('inquiry'));
+
+    $errors = $inquiry_form->validate();
+
+    if (empty($errors)) {
+        $_SESSION['inquiry_form'] = $inquiry_form;
+        header('Location: confirm.php');
+        exit;
+    }
 }
 
 include(VIEW_DIR . DIR_SEP . 'inquiry_form_view.php');

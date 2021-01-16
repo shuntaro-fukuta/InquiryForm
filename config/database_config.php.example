@@ -1,0 +1,8 @@
+<?php
+
+const DATABASE = 'mysql';
+const DATABASE_NAME = 'skillcheck';
+const DATABASE_HOST = 'localhost';
+const DATABASE_ENCODING = 'utf8mb4';
+const DATABASE_USER = 'skillcheck';
+const DATABASE_PASSWORD = '****';

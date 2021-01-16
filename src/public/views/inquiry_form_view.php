@@ -6,8 +6,8 @@
 </head>
 <body>
   <h2>お問い合わせ</h2>
-    <form action="confirm.php" method="post">　
-      <label for="subject">件名</label>
+    <form action="inquiry_form.php" method="post">
+      <label for="subject">件名(必須)</label>
       <select name="subject" id="subject">
         <option value="0" <?php if (isset($inquiry_form) && $inquiry_form->getSubject() === '0') echo 'selected' ?> >ご意見</option>
         <option value="1" <?php if (isset($inquiry_form) && $inquiry_form->getSubject() === '1') echo 'selected' ?>>ご感想</option>

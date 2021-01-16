@@ -83,14 +83,14 @@ class Validator
 
     public function required(string $elementName, ?string $input)
     {
-        if (!empty($input)) return null;
+        if (!is_empty($input)) return null;
 
         return sprintf(self::ERROR_FORMAT_REQUIRED, $this->getDisplayName($elementName));
     }
 
     public function phone(string $elementName, ?string $input)
     {
-        if (empty($input)) return null;
+        if (is_empty($input)) return null;
 
         if (preg_match('/\A0\d{9,10}+\Z/', $input)) return null;
 
@@ -99,7 +99,7 @@ class Validator
 
     public function email(string $elementName, ?string $input)
     {
-        if (empty($input)) return null;
+        if (is_empty($input)) return null;
 
         if (filter_var($input, FILTER_VALIDATE_EMAIL) !== false) return null;
 
@@ -108,7 +108,7 @@ class Validator
 
     public function limit(string $elementName, string $condition, ?string $input)
     {
-        if (empty($input)) return null;
+        if (is_empty($input)) return null;
 
         if (!ctype_digit($condition)) {
             throw new InvalidArgumentException('condition must be "integer". "' . gettype($condition) . '" passed.');
@@ -125,7 +125,7 @@ class Validator
 
     public function in(string $elementName, string $condition, ?string $input)
     {
-        if (empty($input)) return null;
+        if (is_empty($input)) return null;
 
         if (in_array($input, explode(',', $condition))) return null;
 

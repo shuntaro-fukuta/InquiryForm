@@ -7,35 +7,13 @@ require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR .
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (!isset($_SESSION['inquiry_form'])) {
-        header('HTTP/1.0 400 Bad Request');
-        exit;
-    }
-
-    $inquiry_form = $_SESSION['inquiry_form'];
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $inquiry_form = new InquiryForm();
-    $inquiry_form->setSubject(get_element_from_post_parameters('subject'));
-    $inquiry_form->setName(get_element_from_post_parameters('name'));
-    $inquiry_form->setEmail(get_element_from_post_parameters('email'));
-    $inquiry_form->setTelephoneNumber(get_element_from_post_parameters('telephone_number'));
-    $inquiry_form->setInquiry(get_element_from_post_parameters('inquiry'));
-
-    $errors = $inquiry_form->validate();
-    if (!empty($errors)) {
-        $_SESSION['errors'] = $errors;
-        $_SESSION['inquiry_form'] = $inquiry_form;
-        header('Location: inquiry_form.php');
-        exit;
-    }
-
-    // 二重サブミット対策のためリダイレクト
-    $_SESSION['inquiry_form'] = $inquiry_form;
-    header('Location: confirm.php');
+if (!isset($_SESSION['inquiry_form'])) {
+    // TODO: registerのほうと共通化
+    header('HTTP/1.0 400 Bad Request');
+    include(HTML_DIR . DIR_SEP . 'error' . DIR_SEP . '400.html');
     exit;
 }
+
+$inquiry_form = $_SESSION['inquiry_form'];
 
 include(VIEW_DIR . DIR_SEP . 'confirm_view.php');

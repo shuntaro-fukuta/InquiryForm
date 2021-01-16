@@ -7,11 +7,12 @@ require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR .
 
 session_start();
 
+if (!isset($_SESSION['csrf_token'])) {
+    error403();
+}
+
 if (!isset($_SESSION['inquiry_form'])) {
-    // TODO: registerのほうと共通化
-    header('HTTP/1.0 400 Bad Request');
-    include(HTML_DIR . DIR_SEP . 'error' . DIR_SEP . '400.html');
-    exit;
+    error400();
 }
 
 $inquiry_form = $_SESSION['inquiry_form'];

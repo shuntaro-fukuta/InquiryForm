@@ -15,6 +15,7 @@
       <?= nl2br(h($inquiry_form->getInquiry())) ?>
     </div>
 
+    <input type="hidden" name="csrf_token" value="<?= h($_SESSION['csrf_token']) ?>">
     <input id="back_button" type="button" value="修正" onclick="location.href='inquiry_form.php'">
     <input id="submit_button" type="button" value="送信">
   </form>

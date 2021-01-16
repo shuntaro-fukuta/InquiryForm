@@ -16,10 +16,14 @@ require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'SMTP
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 session_start();
+$post_csrf_token = $_POST['csrf_token'] ?? null;
+$session_csrf_token = $_SESSION['csrf_token'] ?? null;
+if (is_null($post_csrf_token) || is_null($session_csrf_token) || $post_csrf_token !== $session_csrf_token) {
+    error403();
+}
+
 if (!isset($_SESSION['inquiry_form'])) {
-    header('HTTP/1.0 400 Bad Request');
-    include(HTML_DIR . DIR_SEP . 'error' . DIR_SEP . '400.html');
-    exit;
+    error400();
 }
 
 $inquiry_form = $_SESSION['inquiry_form'];

@@ -8,6 +8,10 @@ header('X-FRAME-OPTIONS: SAMEORIGIN');
 
 session_start();
 
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 $inquiry_form = null;
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {

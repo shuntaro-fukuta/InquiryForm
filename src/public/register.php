@@ -13,6 +13,8 @@ require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'PHPM
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'Exception.php');
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'SMTP.php');
 
+header('X-FRAME-OPTIONS: SAMEORIGIN');
+
 session_start();
 if (!isset($_SESSION['inquiry_form'])) {
     header('HTTP/1.0 400 Bad Request');

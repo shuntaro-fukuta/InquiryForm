@@ -4,6 +4,8 @@ require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' .
 require_once(LIB_DIR . DIR_SEP . 'functions.php');
 require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR . 'InquiryForm.php');
 
+header('X-FRAME-OPTIONS: SAMEORIGIN');
+
 session_start();
 
 $inquiry_form = null;

@@ -1,0 +1,50 @@
+[user]
+host = 'smtp.gmail.com'
+username = ''
+password = ''
+smtp_secure = 'tls'
+port = 587
+charset = 'UTF-8'
+from = ''
+reply_to = ''
+return_path = ''
+subject = '[お問い合わせフォームテストメール]お問い合わせありがとうございます。'
+template = '
+  ※このメールは自動送信です。
+
+  お問い合わせいただき誠にありがとうございます。
+
+  以下の内容でお問い合わせを受付いたしました。
+  [受付日時]: %s
+  [件名]: %s
+  [名前]: %s
+  [電話番号]: %s
+  [メールアドレス]: %s
+  [お問い合わせ内容]
+  %s
+
+  3営業日以内に折返しご連絡いたしますので、
+  今しばらくお待ちくださいませ。
+'
+
+[admin]
+admin_email = 'shuntaro.fkt@gmail.com'
+host = ''
+username = ''
+password = ''
+smtp_secure = 'tls'
+port = 587
+charset = 'UTF-8'
+from = ''
+return_path = ''
+subject = '[お問い合わせフォームテストメール]お問い合わせを受け付けました。'
+template = '
+  以下の内容でお問い合わせを受付いたしました。
+  [受付日時]: %s
+  [件名]: %s
+  [名前]: %s
+  [電話番号]: %s
+  [メールアドレス]: %s
+  [お問い合わせ内容]
+  %s
+'

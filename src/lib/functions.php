@@ -16,3 +16,7 @@ function get_element_from_post_parameters(string $elementName) {
 function mb_trim(string $string) {
     return '';
 }
+
+function is_empty($var) {
+    return ($var === null || $var === '' || $var === []);
+}

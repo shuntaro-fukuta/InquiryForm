@@ -20,3 +20,17 @@ function mb_trim(string $string) {
 function is_empty($var) {
     return ($var === null || $var === '' || $var === []);
 }
+
+function error400()
+{
+    header('HTTP/1.0 400 Page Expired');
+    include(HTML_DIR . DIR_SEP . 'error' . DIR_SEP . '400.html');
+    exit;
+}
+
+function error403()
+{
+    header('HTTP/1.0 403 Forbidden');
+    include(HTML_DIR . DIR_SEP . 'error' . DIR_SEP . '403.html');
+    exit;
+}

@@ -4,7 +4,13 @@ require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' .
 require_once(LIB_DIR . DIR_SEP . 'functions.php');
 require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR . 'InquiryForm.php');
 
+header('X-FRAME-OPTIONS: SAMEORIGIN');
+
 session_start();
+
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 $inquiry_form = null;
 $errors = [];

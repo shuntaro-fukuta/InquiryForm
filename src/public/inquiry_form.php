@@ -8,7 +8,6 @@ session_start();
 
 $inquiry_form = null;
 $errors = [];
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (isset($_SESSION['inquiry_form'])) {
         $inquiry_form = $_SESSION['inquiry_form'];

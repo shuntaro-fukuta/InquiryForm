@@ -1,3 +1,4 @@
 .vagrant
 
 database_config.php
+mail.ini

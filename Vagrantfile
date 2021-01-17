@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
     vb.cpus = 1
   end
 
+  config.vm.provision "shell", inline: "timedatectl set-timezone Asia/Tokyo"
+
   config.vm.synced_folder "./migration", "/home/vagrant/migration"
   config.vm.synced_folder ".", "/var/www/html", type: "virtualbox"
   config.vm.provision "file", source: "./provision/apache2/apache2.conf", destination: "apache2.conf"

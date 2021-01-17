@@ -23,6 +23,10 @@ class DBConfig
     public function __construct(string $id = 'default')
     {
         $config = require(CONFIG_DIR . DIR_SEP . self::DB_CONFIG_FILENAME);
+        if ($config === false) {
+            throw new LogicException('mail config file "' . self::DB_CONFIG_FILENAME . '" doesn\'t exists.');
+        }
+
         if (!isset($config[$id])) {
             throw new InvalidArgumentException('Database setting of "' . $id . '" is undefined.');
         }

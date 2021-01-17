@@ -1,0 +1,39 @@
+<?php
+
+return [
+    'auth' => [
+        'user_inquiry' => [
+            'Host' => 'smtp.gmail.com',
+            'Username' => 'username',
+            'Password' => '********',
+            'Port' => 587,
+            'SMTPSecure' => 'tls',
+        ],
+
+        'admin_inquiry' => [
+            'Host' => 'smtp.gmail.com',
+            'Username' => 'username',
+            'Password' => '********',
+            'Port' => 587,
+            'SMTPSecure' => 'tls',
+        ],
+    ],
+
+    'header' => [
+        'user_inquiry' => [
+            'From' => 'info@example.com',
+            'ReplyTo' => 'info@example.com',
+            'Charset' => 'UTF-8',
+            'Subject' => '[テストメール(ユーザー)]お問い合わせありがとうございます。',
+        ],
+
+        'admin_inquiry' => [
+            'To' => 'to@example.com',
+            'From' => 'from@example.com',
+            'ReplyTo' => 'admin@example.com',
+            'Charset' => 'UTF-8',
+            'Subject' => '[テストメール(管理者)]お問い合わせを受け付けました。',
+        ],
+    ],
+
+];

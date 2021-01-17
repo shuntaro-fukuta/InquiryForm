@@ -1,6 +1,6 @@
-CREATE TABLE skillcheck.inquiries (
+CREATE TABLE IF NOT EXISTS skillcheck.inquiries (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  subject VARCHAR(50) NOT NULL,
+  subject INT NOT NULL,
   name VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL,
   telephone_number VARCHAR(11) NOT NULL,

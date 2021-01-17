@@ -3,6 +3,7 @@
 require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .  'config' . DIRECTORY_SEPARATOR . 'init.php');
 require_once(LIB_DIR . DIR_SEP . 'functions.php');
 require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR . 'InquiryForm.php');
+require_once(LIB_DIR . DIRECTORY_SEPARATOR . 'db' . DIRECTORY_SEPARATOR . 'DBConfig.php');
 
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 

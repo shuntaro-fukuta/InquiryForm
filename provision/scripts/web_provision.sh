@@ -13,9 +13,8 @@ mv apache2.conf /etc/apache2/apache2.conf
 mv 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Install PHP
-apt install -y php7.2 php7.2-mbstring php-gd libapache2-mod-php7.2 php7.2-mysql php-common php7.2-cli php7.2-common php7.2-json php7.2-opcache php7.2-readline
+apt install -y php7.2 php7.2-mbstring php-gd libapache2-mod-php7.2 php7.2-mysql php-common php7.2-cli php7.2-common php7.2-json php7.2-opcache php7.2-readline sendmail
 
 # Enable PHP
 a2enmod php7.2
 systemctl restart apache2
-

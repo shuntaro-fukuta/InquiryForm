@@ -34,3 +34,9 @@ function error403()
     include(HTML_DIR . DIR_SEP . 'error' . DIR_SEP . '403.html');
     exit;
 }
+
+function dump($var) {
+    echo '<pre>';
+    var_dump($var);
+    echo '</pre>';
+}

@@ -10,6 +10,9 @@ require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR .
 require_once(LIB_DIR . DIR_SEP . 'db' . DIR_SEP . 'Database.php');
 require_once(LIB_DIR . DIR_SEP . 'db' . DIR_SEP . 'DBConfig.php');
 
+require_once(LIB_DIR . DIR_SEP . 'mail' . DIR_SEP . 'Mailer.php');
+require_once(LIB_DIR . DIR_SEP . 'mail' . DIR_SEP . 'config' . DIR_SEP . 'MailAuthConfig.php');
+require_once(LIB_DIR . DIR_SEP . 'mail' . DIR_SEP . 'config' . DIR_SEP . 'MailHeaderConfig.php');
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'PHPMailer.php');
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'Exception.php');
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'SMTP.php');
@@ -41,10 +44,10 @@ try {
     ]);
 
     if ($is_inserted) {
-        $user_mail = create_user_mail_from_inquiry_form($inquiry_form);
+        $user_mail = create_user_mail($inquiry_form);
         $user_mail->send();
 
-        $admin_mail = create_admin_mail_from_inquiry_form($inquiry_form);
+        $admin_mail = create_admin_mail($inquiry_form);
         $admin_mail->send();
     }
 } catch (PDOException $e) {
@@ -55,75 +58,47 @@ try {
 $_SESSION = [];
 $location = $is_inserted ? 'register_success.php' : 'register_failed.php';
 header('Location: ' . $location);
-exit;
 
-function create_user_mail_from_inquiry_form(InquiryForm $inquiry_form)
-{
-    $user_mail = new PHPMailer(true);
+function create_admin_mail(InquiryForm $inquiry_form) {
+    $mail_auth_config = new MailAuthConfig('admin_inquiry');
 
-    $mail_config = parse_ini_file(CONFIG_DIR . DIR_SEP . 'mail.ini', true)['user'];
-    $user_mail->isSMTP();
-    $user_mail->Host = $mail_config['host'];
-    $user_mail->SMTPAuth = true;
-    $user_mail->Username = $mail_config['username'];
-    $user_mail->Password = $mail_config['password'];
-    $user_mail->SMTPSecure = $mail_config['smtp_secure'];
-    $user_mail->Port = $mail_config['port'];
-    $user_mail->CharSet = $mail_config['charset'];
+    $mail_header_config = new MailHeaderConfig('admin_inquiry');
+    $mail_header_config->setTo($mail_header_config->getTo());
 
-    $template = $mail_config['template'];
+    $mailer = new Mailer($mail_auth_config, $mail_header_config);
+
+    $template = Mailer::getMailTemplate('admin_inquiry.php');
     $inquiry_sent_time = new DateTime();
-    $body = sprintf($template,
-       $inquiry_sent_time->format('Y年m月d日 H時i分s秒'),
-       InquiryForm::SUBJECT[$inquiry_form->getSubject()],
-       $inquiry_form->getName(),
-       $inquiry_form->getTelephoneNumber(),
-       $inquiry_form->getEmail(),
-       $inquiry_form->getInquiry()
-    );
+    $mailer->setBody(sprintf($template,
+        $inquiry_sent_time->format('Y年m月d日 H時i分s秒'),
+        InquiryForm::SUBJECT[$inquiry_form->getSubject()],
+        $inquiry_form->getName(),
+        $inquiry_form->getTelephoneNumber(),
+        $inquiry_form->getEmail(),
+        $inquiry_form->getInquiry()
+    ));
 
-    $user_mail->setFrom($mail_config['from']);
-    $user_mail->addAddress($inquiry_form->getEmail());
-    $user_mail->addReplyTo($mail_config['reply_to']);
-    $user_mail->Sender = $mail_config['return_path'];
-
-    $user_mail->Subject =$mail_config['subject'];
-    $user_mail->Body = $body;
-
-    return $user_mail;
+    return $mailer;
 }
 
-function create_admin_mail_from_inquiry_form(InquiryForm $inquiry_form)
-{
-    $admin_mail = new PHPMailer(true);
+function create_user_mail(InquiryForm $inquiry_form) {
+    $mail_auth_config = new MailAuthConfig('user_inquiry');
 
-    $mail_config = parse_ini_file(CONFIG_DIR . DIR_SEP . 'mail.ini', true)['admin'];
-    $admin_mail->isSMTP();
-    $admin_mail->Host = $mail_config['host'];
-    $admin_mail->SMTPAuth = true;
-    $admin_mail->Username = $mail_config['username'];
-    $admin_mail->Password = $mail_config['password'];
-    $admin_mail->SMTPSecure = $mail_config['smtp_secure'];
-    $admin_mail->Port = $mail_config['port'];
-    $admin_mail->CharSet = $mail_config['charset'];
+    $mail_header_config = new MailHeaderConfig('user_inquiry');
+    $mail_header_config->setTo($inquiry_form->getEmail());
 
-    $template = $mail_config['template'];
+    $mailer = new Mailer($mail_auth_config, $mail_header_config);
+
+    $template = Mailer::getMailTemplate('user_inquiry.php');
     $inquiry_sent_time = new DateTime();
-    $body = sprintf($template,
-       $inquiry_sent_time->format('Y年m月d日 H時i分s秒'),
-       InquiryForm::SUBJECT[$inquiry_form->getSubject()],
-       $inquiry_form->getName(),
-       $inquiry_form->getTelephoneNumber(),
-       $inquiry_form->getEmail(),
-       $inquiry_form->getInquiry()
-    );
+    $mailer->setBody(sprintf($template,
+        $inquiry_sent_time->format('Y年m月d日 H時i分s秒'),
+        InquiryForm::SUBJECT[$inquiry_form->getSubject()],
+        $inquiry_form->getName(),
+        $inquiry_form->getTelephoneNumber(),
+        $inquiry_form->getEmail(),
+        $inquiry_form->getInquiry()
+    ));
 
-    $admin_mail->setFrom($mail_config['from']);
-    $admin_mail->addAddress($mail_config['admin_email']);
-    $admin_mail->Sender = $mail_config['return_path'];
-
-    $admin_mail->Subject =$mail_config['subject'];
-    $admin_mail->Body = $body;
-
-    return $admin_mail;
+    return $mailer;
 }

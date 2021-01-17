@@ -11,7 +11,7 @@ class DBConfig
     private $password;
     private $charset;
 
-    private $configs = [
+    private $requiredConfigs = [
         'driver',
         'database',
         'host',
@@ -44,7 +44,7 @@ class DBConfig
             throw new LogicException('Database setting must be an array.');
         }
 
-        foreach ($this->configs as $configName) {
+        foreach ($this->requiredConfigs as $configName) {
             if (!isset($config[$configName])) {
                 throw new LogicException('Database setting "' . $configName . '" is undefined.');
             }

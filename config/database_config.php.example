@@ -1,8 +1,12 @@
 <?php
 
-const DATABASE = 'mysql';
-const DATABASE_NAME = 'skillcheck';
-const DATABASE_HOST = 'localhost';
-const DATABASE_ENCODING = 'utf8mb4';
-const DATABASE_USER = 'skillcheck';
-const DATABASE_PASSWORD = '****';
+return [
+    'default' => [
+        'driver' => 'mysql',
+        'database' => 'skillcheck',
+        'host' => 'localhost',
+        'username' => 'skillcheck',
+        'password' => '********',
+        'charset' => 'utf8mb4',
+    ],
+];

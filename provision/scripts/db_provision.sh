@@ -2,7 +2,7 @@
 
 # Install MySQL
 sudo apt install -y mysql-server
-
+mv my.cnf /etc/mysql/my.cnf
 systemctl enable mysql
 systemctl start mysql
 

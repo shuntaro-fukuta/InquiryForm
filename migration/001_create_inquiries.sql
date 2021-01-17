@@ -1,7 +1,7 @@
 CREATE TABLE skillcheck.inquiries (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   subject VARCHAR(50) NOT NULL,
-  name VARCHAR(20) NOT NULL,
+  name VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL,
   telephone_number VARCHAR(11) NOT NULL,
   inquiry TEXT NOT NULL

@@ -6,7 +6,7 @@ return [
         'database' => 'skillcheck',
         'host' => 'localhost',
         'username' => 'skillcheck',
-        'password' => '********',
+        'password' => 'password',
         'charset' => 'utf8mb4',
     ],
 ];

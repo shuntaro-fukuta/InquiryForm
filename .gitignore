@@ -2,3 +2,5 @@
 
 database_config.php
 mail_config.php
+
+*.log

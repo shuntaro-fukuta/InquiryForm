@@ -26,7 +26,7 @@ class InquiryForm
 
     public function setSubject(?string $subject)
     {
-        $this->subject = $subject;
+        $this->subject = trim($subject);
     }
 
     public function getSubject()
@@ -36,7 +36,7 @@ class InquiryForm
 
     public function setName(?string $name)
     {
-        $this->name = $name;
+        $this->name = trim($name);
     }
 
     public function getName()
@@ -46,7 +46,7 @@ class InquiryForm
 
     public function setEmail(?string $email)
     {
-        $this->email = $email;
+        $this->email = trim($email);
     }
 
     public function getEmail()
@@ -56,7 +56,7 @@ class InquiryForm
 
     public function setTelephoneNumber(?string $telephoneNumber)
     {
-        $this->telephoneNumber = $telephoneNumber;
+        $this->telephoneNumber = trim($telephoneNumber);
     }
 
     public function getTelephoneNumber()
@@ -66,7 +66,7 @@ class InquiryForm
 
     public function setInquiry(?string $inquiry)
     {
-        $this->inquiry = $inquiry;
+        $this->inquiry = trim($inquiry);
     }
 
     public function getInquiry()

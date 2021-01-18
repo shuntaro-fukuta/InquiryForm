@@ -9,14 +9,15 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: "timedatectl set-timezone Asia/Tokyo"
 
-  config.vm.synced_folder "./migration", "/home/vagrant/migration"
   config.vm.synced_folder ".", "/var/www/html", type: "virtualbox"
+
   config.vm.provision "file", source: "./provision/apache2/apache2.conf", destination: "apache2.conf"
   config.vm.provision "file", source: "./provision/apache2/sites-available/000-default.conf", destination: "000-default.conf"
-  config.vm.provision "file", source: "./provision/mysql/my.cnf", destination: "my.cnf"
-  config.vm.provision "file", source: "./provision/mysql/provision.sql", destination: "provision.sql"
-
   config.vm.provision "shell", path: "./provision/scripts/web_provision.sh"
+
+  config.vm.synced_folder "./migration", "/home/vagrant/migration"
+  config.vm.provision "file", source: "./provision/mysql/provision.sql", destination: "provision.sql"
+  config.vm.provision "file", source: "./provision/mysql/my.cnf", destination: "my.cnf"
   config.vm.provision "shell", path: "./provision/scripts/db_provision.sh"
 
   config.vm.network "private_network", ip: "192.168.33.10"

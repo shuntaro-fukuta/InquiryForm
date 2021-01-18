@@ -1,5 +1,7 @@
 <?php
 
+require_once(CLASSES_DIR . DIR_SEP . 'mail' . DIR_SEP . 'MailConfig.php');
+
 class MailHeaderConfig extends MailConfig
 {
     private $To;

@@ -1,9 +1,9 @@
 <?php
 
 require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .  'config' . DIRECTORY_SEPARATOR . 'init.php');
-require_once(LIB_DIR . DIRECTORY_SEPARATOR . 'Validator.php');
-require_once(LIB_DIR . DIRECTORY_SEPARATOR . 'functions.php');
-require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR . 'InquiryForm.php');
+require_once(CLASSES_DIR . DIR_SEP . 'Validator.php');
+require_once(LIB_DIR . DIR_SEP . 'functions.php');
+require_once(CLASSES_DIR . DIR_SEP . 'form' . DIR_SEP . 'InquiryForm.php');
 
 session_start();
 

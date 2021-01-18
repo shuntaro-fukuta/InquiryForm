@@ -12,9 +12,8 @@ function get_element_from_post_parameters(string $elementName) {
     return trim($_POST[$elementName]);
 }
 
-// TODO: 全角スペース trim
 function mb_trim(string $string) {
-    return '';
+    return preg_replace('/\A[\p{Cc}\p{Cf}\p{Z}]++|[\p{Cc}\p{Cf}\p{Z}]++\z/u', '', $string);
 }
 
 function is_empty($var) {

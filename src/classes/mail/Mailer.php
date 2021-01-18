@@ -34,7 +34,6 @@ class Mailer
     {
         $this->mailer->From = $header->getFrom();
         $this->mailer->addAddress($header->getTo());
-        // TODO: return path
         $this->mailer->Sender = $header->getFrom();
         $this->mailer->CharSet = $header->getCharset();
         $this->mailer->Subject = $header->getSubject();

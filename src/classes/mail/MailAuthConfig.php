@@ -1,6 +1,6 @@
 <?php
 
-require_once(LIB_DIR . DIRECTORY_SEPARATOR . 'mail' . DIRECTORY_SEPARATOR . DIR_SEP . 'config' . DIR_SEP . 'MailConfig.php');
+require_once(CLASSES_DIR . DIR_SEP . 'mail' . DIR_SEP . 'MailConfig.php');
 
 class MailAuthConfig extends MailConfig
 {

@@ -6,13 +6,12 @@ use PHPMailer\PHPMailer\SMTP;
 
 require_once(__DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR .  'config' . DIRECTORY_SEPARATOR . 'init.php');
 require_once(LIB_DIR . DIR_SEP . 'functions.php');
-require_once(CLASSES_DIR . DIRECTORY_SEPARATOR . 'Forms' . DIRECTORY_SEPARATOR . 'InquiryForm.php');
-require_once(LIB_DIR . DIR_SEP . 'db' . DIR_SEP . 'Database.php');
-require_once(LIB_DIR . DIR_SEP . 'db' . DIR_SEP . 'DBConfig.php');
-
-require_once(LIB_DIR . DIR_SEP . 'mail' . DIR_SEP . 'Mailer.php');
-require_once(LIB_DIR . DIR_SEP . 'mail' . DIR_SEP . 'config' . DIR_SEP . 'MailAuthConfig.php');
-require_once(LIB_DIR . DIR_SEP . 'mail' . DIR_SEP . 'config' . DIR_SEP . 'MailHeaderConfig.php');
+require_once(CLASSES_DIR . DIR_SEP . 'form' . DIR_SEP . 'InquiryForm.php');
+require_once(CLASSES_DIR . DIR_SEP . 'db' . DIR_SEP . 'Database.php');
+require_once(CLASSES_DIR . DIR_SEP . 'db' . DIR_SEP . 'DBConfig.php');
+require_once(CLASSES_DIR . DIR_SEP . 'mail' . DIR_SEP . 'Mailer.php');
+require_once(CLASSES_DIR . DIR_SEP . 'mail' . DIR_SEP . 'MailAuthConfig.php');
+require_once(CLASSES_DIR . DIR_SEP . 'mail' . DIR_SEP . 'MailHeaderConfig.php');
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'PHPMailer.php');
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'Exception.php');
 require_once(LIB_DIR . DIR_SEP . 'PHPMailer' . DIR_SEP . 'src' . DIR_SEP . 'SMTP.php');

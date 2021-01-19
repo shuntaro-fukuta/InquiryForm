@@ -3,26 +3,26 @@
 return [
     'auth' => [
         'user_inquiry' => [
-            'Host' => 'smtp.gmail.com',
+            'Host' => 'host',
             'Username' => 'username',
             'Password' => '********',
-            'Port' => 587,
-            'SMTPSecure' => 'tls',
+            'Port' => 465 or 587,
+            'SMTPSecure' => 'ssl or tls',
         ],
 
         'admin_inquiry' => [
-            'Host' => 'smtp.gmail.com',
+            'Host' => 'host',
             'Username' => 'username',
             'Password' => '********',
-            'Port' => 587,
-            'SMTPSecure' => 'tls',
+            'Port' => 465 or 587,
+            'SMTPSecure' => 'ssl or tls',
         ],
     ],
 
     'header' => [
         'user_inquiry' => [
-            'From' => 'info@example.com',
-            'ReplyTo' => 'info@example.com',
+            'From' => 'from@example.com',
+            'ReplyTo' => 'reply_to@example.com',
             'Charset' => 'UTF-8',
             'Subject' => '[テストメール(ユーザー)]お問い合わせありがとうございます。',
         ],
@@ -30,7 +30,7 @@ return [
         'admin_inquiry' => [
             'To' => 'to@example.com',
             'From' => 'from@example.com',
-            'ReplyTo' => 'admin@example.com',
+            'ReplyTo' => 'reply_to@example.com',
             'Charset' => 'UTF-8',
             'Subject' => '[テストメール(管理者)]お問い合わせを受け付けました。',
         ],
